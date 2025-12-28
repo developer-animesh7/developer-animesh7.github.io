@@ -3,3 +3,4 @@ __pycache__/
 Thumbs.db
 *.log
 *_extracted.txt
+*.pdf
