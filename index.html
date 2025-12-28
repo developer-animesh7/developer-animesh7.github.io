@@ -1,0 +1,370 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com; script-src 'self'; connect-src 'self'; form-action 'self' mailto:; upgrade-insecure-requests; block-all-mixed-content" />
+  <title>Animesh Patra — Software Engineer</title>
+  <meta name="description" content="Animesh Patra — software engineering with a security-first mindset. Shipped FocusGuard extension and built real-world tools." />
+  <meta property="og:title" content="Animesh Patra — Portfolio" />
+  <meta property="og:description" content="Software engineer building secure products: FocusGuard, Findora scanner, AI/ML work." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="header" id="top">
+    <div class="wrap header__inner">
+      <a class="logo" href="#top" aria-label="Go to top">
+        <span class="logo__mark" aria-hidden="true"></span>
+        <img class="logo__thumb" src="./assets/my dp.jpg" alt="Animesh Patra" loading="lazy" decoding="async" />
+        <span class="logo__text">Animesh Patra</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="#projects">Projects</a>
+        <a class="nav__link" href="#experience">Experience</a>
+        <a class="nav__link" href="#skills">Skills</a>
+        <a class="nav__link" href="#certs">Certs</a>
+        <a class="nav__link" href="#contact">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <button class="icon" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">◐</button>
+        <a class="btn btn--primary" href="#contact">Work together</a>
+        <button class="icon icon--menu" id="menuToggle" type="button" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false" title="Menu"></button>
+      </div>
+    </div>
+    <div class="mobile" id="mobileNav" hidden>
+      <div class="wrap mobile__inner" aria-label="Mobile navigation">
+        <a class="nav__link" href="#projects">Projects</a>
+        <a class="nav__link" href="#experience">Experience</a>
+        <a class="nav__link" href="#skills">Skills</a>
+        <a class="nav__link" href="#certs">Certs</a>
+        <a class="nav__link" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-label="Intro">
+      <div class="bg-layer" aria-hidden="true"></div>
+      <div class="wrap hero__grid">
+        <div class="hero__content reveal">
+          <div class="pill">
+            <span class="pill__dot" aria-hidden="true"></span>
+            Software engineer · security-first thinker
+          </div>
+          <h1 class="hero__title hero-title">
+            <span id="typing-text"></span><span id="typing-cursor">▍</span>
+          </h1>
+          <p class="hero__lead">Software development engineer (security-aware) — shipped a live Chrome extension, built AI/security tools, and deliver production-ready experiences.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#projects">See projects</a>
+            <a class="btn" href="#contact">Let&apos;s talk</a>
+            <a class="btn" href="mailto:animeshpatra7908@gmail.com">Email</a>
+          </div>
+          <div class="metrics">
+            <div class="metric"><div class="metric__k">Shipped</div><div class="metric__v">FocusGuard</div></div>
+            <div class="metric"><div class="metric__k">Experience</div><div class="metric__v">Internships + AI/ML</div></div>
+            <div class="metric"><div class="metric__k">CGPA</div><div class="metric__v">8.35</div></div>
+          </div>
+          <div class="link-buttons">
+            <a class="link-btn link-btn--linkedin" href="https://www.linkedin.com/in/animesh-patra2004" target="_blank" rel="noopener noreferrer">
+              <span class="link-btn__icon icon--li" aria-hidden="true"></span>
+              <span>LinkedIn</span>
+            </a>
+            <a class="link-btn" href="https://chromewebstore.google.com/detail/ggdhcadbfcjonlbkbphefignhoolmpko?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">FocusGuard Live</a>
+          </div>
+        </div>
+
+        <aside class="hero__card reveal tilt" data-tilt>
+          <div class="hero__frame">
+            <img src="./assets/my dp.jpg" alt="Portrait of Animesh Patra" loading="eager" decoding="async" data-fallback-src="./assets/profile-placeholder.svg" />
+            <div class="hero__glow" aria-hidden="true"></div>
+          </div>
+          <div class="hero__cardBody">
+            <div class="name">Animesh Patra</div>
+            <div class="role">Software Development Engineer · Security-aware</div>
+            <p class="note">Building products with performance, UX polish, and cybersecurity discipline.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-label="Projects">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="eyebrow">Product work</p>
+          <h2>Projects that ship</h2>
+          <p class="muted">Shipped and in-progress builds across productivity, security, and AI.</p>
+        </header>
+        <div class="grid grid--2">
+          <article class="panel reveal tilt" data-tilt>
+            <div class="panel__top">
+              <div>
+                <h3>FocusGuard — Reels & Shorts Blocker</h3>
+                <p class="muted">Chrome extension to remove short-form distractions and improve focus.</p>
+              </div>
+              <span class="badge">Shipped</span>
+            </div>
+            <p class="muted">Blocks Shorts/Reels/TikTok, tracks focus, and keeps data local. Designed like a product, not a script.</p>
+            <div class="tags">
+              <span class="tag">Chrome Extension</span><span class="tag">Privacy-first</span><span class="tag">UI/UX</span>
+            </div>
+            <div class="panel__actions">
+              <a class="btn btn--primary" target="_blank" rel="noopener noreferrer" href="https://chromewebstore.google.com/detail/ggdhcadbfcjonlbkbphefignhoolmpko?utm_source=item-share-cb">Live on Chrome Web Store</a>
+            </div>
+          </article>
+
+          <article class="panel reveal tilt" data-tilt>
+            <div class="panel__top">
+              <div>
+                <h3>Findora — Vulnerability Scanner</h3>
+                <p class="muted">AI-assisted web scanning with risk scoring and reports.</p>
+              </div>
+              <span class="badge badge--soft">Security</span>
+            </div>
+            <p class="muted">Detects issues, assigns severity, and exports PDF/Excel for teams. Built with Python + AI to speed triage.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">AI</span><span class="tag">Reporting</span></div>
+            <div class="panel__actions">
+              <a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/developer-animesh7/Findora-Vulnerability-Scanner">GitHub</a>
+            </div>
+          </article>
+
+          <article class="panel reveal tilt" data-tilt>
+            <div class="panel__top">
+              <div>
+                <h3>AI Fashion App</h3>
+                <p class="muted">Full-stack app integrating ML modules (ongoing).</p>
+              </div>
+              <span class="badge badge--soft">In progress</span>
+            </div>
+            <p class="muted">Responsive React + Node.js experience with ML-driven recommendations and modern UX polish.</p>
+            <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">ML</span></div>
+          </article>
+
+          <article class="panel reveal tilt" data-tilt>
+            <div class="panel__top">
+              <div>
+                <h3>Face Recognition System</h3>
+                <p class="muted">Real-time authentication using deep learning.</p>
+              </div>
+              <span class="badge badge--soft">Computer Vision</span>
+            </div>
+            <p class="muted">Built with Python + OpenCV for secure identity workflows. Focused on reliability and low-latency checks.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">ML</span></div>
+            <div class="panel__actions">
+              <a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/developer-animesh7/AI-Face-recognition-Attendance-System">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-label="Experience">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="eyebrow">Impact</p>
+          <h2>Experience</h2>
+          <p class="muted">Software engineering internships with security-aware, AI-driven outcomes.</p>
+        </header>
+        <div class="timeline">
+          <article class="timeline__item experience-card reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__body">
+              <div class="timeline__when">Jun 2025 – Aug 2025</div>
+              <h3>Ethical Hacking & Cyber Security Intern  IIT Jammu</h3>
+              <p class="muted">Hands-on vulnerability discovery and penetration testing practice.</p>
+            </div>
+          </article>
+          <article class="timeline__item experience-card reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__body">
+              <div class="timeline__when">Jul 2025 – Dec 2025</div>
+              <h3>AI Research Intern  University of Calcutta</h3>
+              <p class="muted">Integrated AI/ML with IoT for production scenarios; model training + deployment considerations.</p>
+            </div>
+          </article>
+          <article class="timeline__item experience-card reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__body">
+              <div class="timeline__when">Feb 2024 – Jul 2025</div>
+              <h3>Cyber Security Analyst Intern  Google (Remote)</h3>
+              <p class="muted">Incident analysis and security monitoring exposure with emphasis on practical response.</p>
+            </div>
+          </article>
+          <article class="timeline__item experience-card reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__body">
+              <div class="timeline__when">Jan 2024 – Jun 2024</div>
+              <h3>Cyber Security Specialist  Coursera</h3>
+              <p class="muted">Structured coursework and labs to strengthen security fundamentals.</p>
+            </div>
+          </article>
+          <article class="timeline__item experience-card reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__body">
+              <div class="timeline__when">Feb 2024 – Mar 2024</div>
+              <h3>Java Development Intern  CodeClause</h3>
+              <p class="muted">Applied Java fundamentals through deliverables and team reviews.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills" aria-label="Skills">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="eyebrow">Capability</p>
+          <h2>Skills & toolkit</h2>
+          <p class="muted">Focused on software engineering, with security awareness built in.</p>
+        </header>
+        <div class="grid grid--3 skills">
+          <div class="tile reveal tilt" data-tilt>
+            <h3>Languages</h3>
+            <div class="tags tags--wrap"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">C</span><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span><span class="tag">Dart</span></div>
+          </div>
+          <div class="tile reveal tilt" data-tilt>
+            <h3>Platforms & tools</h3>
+            <div class="tags tags--wrap"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">GitHub</span><span class="tag">Windows</span><span class="tag">Kali</span><span class="tag">Ubuntu</span></div>
+          </div>
+          <div class="tile reveal tilt" data-tilt>
+            <h3>Security stack</h3>
+            <div class="tags tags--wrap"><span class="tag">Wireshark</span><span class="tag">Burp Suite</span><span class="tag">Autopsy</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="certs" aria-label="Certifications">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="eyebrow">Credibility</p>
+          <h2>Certifications</h2>
+          <p class="muted">Security and platform certifications that back the engineering work.</p>
+        </header>
+        <div class="panel glass reveal">
+          <ul class="list list--2">
+            <li><strong>Ethical Hacking & Cyber Security</strong> — IIT Jammu (Aug 2025) — <a class="link" target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1ALRb7EjsVtAyw80cJspOBggDLwyaIy9O/view">Certificate</a></li>
+            <li><strong>Google Cybersecurity Professional Certificate</strong> — Google (Jul 2024) — <a class="link" target="_blank" rel="noopener noreferrer" href="https://www.coursera.org/account/accomplishments/professional-cert/HA4NJSD2WGGN?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=prof">Certificate</a></li>
+            <li><strong>NDG Linux Essentials</strong> — Cisco Networking Academy — <a class="link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/posts/animesh-patra2004_linux-essential-course-by-cisco-provided-activity-7165912901873065985-fQBA/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEjtF5EBLupU-bluPNtdWkLA7BG5qw8nOe8">Certificate</a></li>
+            <li><strong>Cybersecurity A Platform</strong> — Jayadhi Limited (Aug 2025)</li>
+            <li><strong>Connect and Protect: Networks and Network Security</strong> — Google/Coursera</li>
+            <li><strong>Assets, Threats, and Vulnerabilities</strong> — Google/Coursera</li>
+            <li><strong>Put It to Work: Prepare for Cybersecurity Jobs</strong> — Google/Coursera</li>
+            <li><strong>Web Development</strong> — Coursework</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education" aria-label="Education">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="eyebrow">Education</p>
+          <h2>Education</h2>
+          <p class="muted">B.Tech in Computer Science and Engineering with strong problem-solving and cybersecurity exposure.</p>
+        </header>
+        <div class="education reveal">
+          <a class="education__icon" aria-label="The Neotia University" href="https://www.tnu.in/" target="_blank" rel="noopener noreferrer"></a>
+          <div class="education__body">
+            <h3>The Neotia University</h3>
+            <p class="muted">Bachelor of Technology — BTech, Computer Science and Engineering</p>
+            <p class="education__skills">Cybersecurity, Problem Solving, plus 8 more skills</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-final" id="contact" aria-label="Contact">
+      <div class="wrap">
+        <header class="section__head contact-head reveal">
+          <p class="eyebrow">Collaboration</p>
+          <div class="contact-title-wrap">
+            <h2 class="contact-title">Let&apos;s build something secure and meaningful.</h2>
+            <span class="contact-underline" aria-hidden="true"></span>
+          </div>
+          <p class="contact-sub">Open to software engineering roles, internships, and product collaborations.</p>
+        </header>
+
+        <div class="contact-shell reveal">
+          <div class="contact-grid">
+            <div class="contact-info">
+              <h3>Reach me</h3>
+              <div class="contact-rows">
+                <div class="contact-row">
+                  <div class="contact-row__main">
+                    <span class="contact-dot" aria-hidden="true"></span>
+                    <div class="contact-row__text">
+                      <span class="contact-row__label">Email</span>
+                      <a class="contact-row__value" href="mailto:animeshpatra7908@gmail.com">animeshpatra7908@gmail.com</a>
+                    </div>
+                  </div>
+                  <button class="copy-btn" type="button" data-copy="animeshpatra7908@gmail.com">Copy</button>
+                </div>
+
+                <a class="contact-row" href="https://www.linkedin.com/in/animesh-patra2004" target="_blank" rel="noopener noreferrer">
+                  <div class="contact-row__main">
+                    <span class="contact-dot" aria-hidden="true"></span>
+                    <div class="contact-row__text">
+                      <span class="contact-row__label">LinkedIn</span>
+                      <span class="contact-row__value">animesh-patra2004</span>
+                    </div>
+                  </div>
+                  <span class="contact-row__cta">Open</span>
+                </a>
+
+                <a class="contact-row" href="https://github.com/developer-animesh7" target="_blank" rel="noopener noreferrer">
+                  <div class="contact-row__main">
+                    <span class="contact-dot" aria-hidden="true"></span>
+                    <div class="contact-row__text">
+                      <span class="contact-row__label">GitHub</span>
+                      <span class="contact-row__value">developer-animesh7</span>
+                    </div>
+                  </div>
+                  <span class="contact-row__cta">Open</span>
+                </a>
+              </div>
+
+              <div class="trust-note">
+                <span class="trust-dot" aria-hidden="true"></span>
+                <div>
+                  <div class="trust-title">Privacy-first communication</div>
+                  <div class="trust-copy">Phone shared on request.</div>
+                </div>
+              </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+              <h3>Send a note</h3>
+              <p class="muted">This opens your email client—no backend required.</p>
+              <label class="field"><span>Name</span><input name="name" type="text" autocomplete="name" placeholder="Your name" maxlength="80" required /></label>
+              <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="120" required /></label>
+              <label class="field"><span>Message</span><textarea name="message" rows="5" placeholder="What would you like to build?" maxlength="2000" required></textarea></label>
+              <button class="btn btn--primary" type="submit">Compose email</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap footer__inner">
+        <p class="muted">© <span id="year"></span> Animesh Patra — engineered with craft.</p>
+        <a class="btn" href="#top">Back to top</a>
+      </div>
+    </footer>
+  </main>
+
+  <script type="application/ld+json" src="./schema.json"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

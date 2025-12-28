@@ -1,0 +1,17 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Animesh Patra",
+  "email": "mailto:animeshpatra7908@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/animesh-patra2004",
+    "https://github.com/developer-animesh7"
+  ],
+  "jobTitle": "Software Development Engineer",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kolkata",
+    "addressRegion": "West Bengal",
+    "addressCountry": "IN"
+  }
+}
