@@ -1,0 +1,15 @@
+# Clean, extensionless policy routes
+/privacy  /privacy.html  200
+/terms    /terms.html    200
+/refund   /refund.html   200
+
+# Handle trailing slash variants
+/privacy/  /privacy.html  200
+/terms/    /terms.html    200
+/refund/   /refund.html   200
+
+# Canonicalize .html URLs to clean routes
+/index.html    /        301
+/privacy.html  /privacy  301
+/terms.html    /terms    301
+/refund.html   /refund   301

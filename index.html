@@ -1,370 +1,614 @@
-﻿<!doctype html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com; script-src 'self'; connect-src 'self'; form-action 'self' mailto:; upgrade-insecure-requests; block-all-mixed-content" />
-  <title>Animesh Patra — Software Engineer</title>
-  <meta name="description" content="Animesh Patra — software engineering with a security-first mindset. Shipped FocusGuard extension and built real-world tools." />
-  <meta property="og:title" content="Animesh Patra — Portfolio" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; img-src 'self' https:; font-src 'self' https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; upgrade-insecure-requests; block-all-mixed-content" />
+  <title>Animesh Patra | Software Engineer</title>
+  <meta name="description" content="Animesh Patra - Software Development Engineer with a security-first mindset. Co-founder, building real-world systems, AI tools, and production-ready applications." />
+  <meta property="og:title" content="Animesh Patra | Software Engineer" />
   <meta property="og:description" content="Software engineer building secure products: FocusGuard, Findora scanner, AI/ML work." />
   <meta property="og:type" content="website" />
-  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:image" content="./assets/dp%20picture%202.png" />
+  <link rel="icon" href="./assets/dp%20picture%202.png" type="image/png" />
+  <link rel="apple-touch-icon" href="./assets/dp%20picture%202.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <!-- Ambient glass orbs -->
+  <div class="orb orb--1" aria-hidden="true"></div>
+  <div class="orb orb--2" aria-hidden="true"></div>
+  <div class="orb orb--3" aria-hidden="true"></div>
+  <div class="orb orb--4" aria-hidden="true"></div>
+
   <a class="skip" href="#main">Skip to content</a>
 
+  <!-- ========== HEADER ========== -->
   <header class="header" id="top">
-    <div class="wrap header__inner">
-      <a class="logo" href="#top" aria-label="Go to top">
-        <span class="logo__mark" aria-hidden="true"></span>
-        <img class="logo__thumb" src="./assets/my dp.jpg" alt="Animesh Patra" loading="lazy" decoding="async" />
-        <span class="logo__text">Animesh Patra</span>
+    <div class="container header__inner">
+      <a href="/" class="logo site-logo" aria-label="Go to homepage">
+        <img class="logo__img profile-img" src="./assets/dp%20picture%202.png" alt="Animesh Patra" width="36" height="36" loading="lazy" decoding="async" />
+        <span class="logo__name">Animesh Patra</span>
       </a>
       <nav class="nav" aria-label="Primary">
         <a class="nav__link" href="#projects">Projects</a>
         <a class="nav__link" href="#experience">Experience</a>
         <a class="nav__link" href="#skills">Skills</a>
-        <a class="nav__link" href="#certs">Certs</a>
+        <a class="nav__link" href="#certs">Certifications</a>
         <a class="nav__link" href="#contact">Contact</a>
+        <a class="nav__link" href="/privacy">Privacy</a>
       </nav>
-      <div class="header__actions">
-        <button class="icon" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">◐</button>
-        <a class="btn btn--primary" href="#contact">Work together</a>
-        <button class="icon icon--menu" id="menuToggle" type="button" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false" title="Menu"></button>
+      <div class="header__right">
+        <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+          <span class="theme-btn__icon" aria-hidden="true"></span>
+        </button>
+        <a class="cta-btn" href="#contact">Hire me</a>
+        <button class="burger" id="menuToggle" type="button" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
-    <div class="mobile" id="mobileNav" hidden>
-      <div class="wrap mobile__inner" aria-label="Mobile navigation">
+    <div class="mobile-nav" id="mobileNav" hidden>
+      <div class="container mobile-nav__inner">
         <a class="nav__link" href="#projects">Projects</a>
         <a class="nav__link" href="#experience">Experience</a>
         <a class="nav__link" href="#skills">Skills</a>
-        <a class="nav__link" href="#certs">Certs</a>
+        <a class="nav__link" href="#certs">Certifications</a>
         <a class="nav__link" href="#contact">Contact</a>
+        <a class="nav__link" href="/privacy">Privacy</a>
       </div>
     </div>
   </header>
 
+  <!-- ========== MAIN ========== -->
   <main id="main">
-    <section class="hero" aria-label="Intro">
-      <div class="bg-layer" aria-hidden="true"></div>
-      <div class="wrap hero__grid">
-        <div class="hero__content reveal">
-          <div class="pill">
-            <span class="pill__dot" aria-hidden="true"></span>
-            Software engineer · security-first thinker
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero__grid">
+        <div class="hero__text reveal">
+          <div class="status-pill">
+            <span class="status-pill__dot"></span>
+            Available for work
           </div>
-          <h1 class="hero__title hero-title">
-            <span id="typing-text"></span><span id="typing-cursor">▍</span>
+          <h1 class="hero__heading">
+            <span id="typing-text"></span><span id="typing-cursor" class="cursor">|</span>
           </h1>
-          <p class="hero__lead">Software development engineer (security-aware) — shipped a live Chrome extension, built AI/security tools, and deliver production-ready experiences.</p>
-          <div class="hero__cta">
-            <a class="btn btn--primary" href="#projects">See projects</a>
-            <a class="btn" href="#contact">Let&apos;s talk</a>
-            <a class="btn" href="mailto:animeshpatra7908@gmail.com">Email</a>
+          <p class="hero__sub">Software Development Engineer with a security-first mindset, co-founder of a startup, building real-world systems, AI tools, and production-ready applications.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--glow" href="#projects">View Projects</a>
+            <a class="btn btn--outline" href="#contact">Contact Me</a>
           </div>
-          <div class="metrics">
-            <div class="metric"><div class="metric__k">Shipped</div><div class="metric__v">FocusGuard</div></div>
-            <div class="metric"><div class="metric__k">Experience</div><div class="metric__v">Internships + AI/ML</div></div>
-            <div class="metric"><div class="metric__k">CGPA</div><div class="metric__v">8.35</div></div>
-          </div>
-          <div class="link-buttons">
-            <a class="link-btn link-btn--linkedin" href="https://www.linkedin.com/in/animesh-patra2004" target="_blank" rel="noopener noreferrer">
-              <span class="link-btn__icon icon--li" aria-hidden="true"></span>
-              <span>LinkedIn</span>
+          <div class="stats">
+            <a class="stat glass-surface stat--link" href="https://chromewebstore.google.com/detail/pdjebhcifgoembcidgjhdjohnkgcbflb?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer" aria-label="Open Glass New Tab on Chrome Web Store">
+              <span class="stat__label">Shipped</span>
+              <span class="stat__value">GNT: Glass New Tab</span>
             </a>
-            <a class="link-btn" href="https://chromewebstore.google.com/detail/ggdhcadbfcjonlbkbphefignhoolmpko?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">FocusGuard Live</a>
+            <a class="stat glass-surface stat--link" href="https://drive.google.com/file/d/1ALRb7EjsVtAyw80cJspOBggDLwyaIy9O/view?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Open IIT Jammu certificate on Google Drive">
+              <span class="stat__label">Experience</span>
+              <span class="stat__value">IIT Jammu + AI/ML Experience</span>
+            </a>
+            <div class="stat glass-surface">
+              <span class="stat__label">Things I&rsquo;ve Built</span>
+              <span class="stat__value">12+ Projects &middot; 4 Live</span>
+            </div>
           </div>
         </div>
 
-        <aside class="hero__card reveal tilt" data-tilt>
-          <div class="hero__frame">
-            <img src="./assets/my dp.jpg" alt="Portrait of Animesh Patra" loading="eager" decoding="async" data-fallback-src="./assets/profile-placeholder.svg" />
-            <div class="hero__glow" aria-hidden="true"></div>
+        <aside class="hero__card reveal" data-tilt>
+          <div class="hero__photo">
+            <img src="./assets/my%20img.png" alt="Portrait of Animesh Patra" loading="eager" decoding="async" data-fallback-src="./assets/profile-placeholder.svg" />
+            <div class="hero__photo-shine" aria-hidden="true"></div>
           </div>
-          <div class="hero__cardBody">
-            <div class="name">Animesh Patra</div>
-            <div class="role">Software Development Engineer · Security-aware</div>
-            <p class="note">Building products with performance, UX polish, and cybersecurity discipline.</p>
+          <div class="hero__card-body">
+            <h2 class="hero__name">Animesh Patra</h2>
+            <p class="hero__role">Software Development Engineer &middot; Security-first</p>
+            <p class="hero__bio">Building secure, real-world systems with AI, performance, and clean user experience.</p>
           </div>
         </aside>
+        </div>
+
+        <div class="hero__secondary reveal" aria-label="Quick links">
+          <div class="social-row social-row--subtle">
+            <a class="social-btn social-btn--linkedin" href="https://www.linkedin.com/in/animesh-patra2004" target="_blank" rel="noopener noreferrer">
+              <svg class="social-btn__icon" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M100.28 448H7.4V149.33h92.88zm-46.44-340a53.79 53.79 0 1153.79-53.78A53.8 53.8 0 0153.84 108zM447.9 448h-92.68V302.4c0-34.7-.7-79.23-48.26-79.23-48.3 0-55.7 37.72-55.7 76.7V448h-92.8V149.33h89.08v40.8h1.3c12.4-23.5 42.5-48.3 87.46-48.3 93.5 0 110.7 61.54 110.7 141.5z"/></svg>
+              LinkedIn
+            </a>
+            <a class="social-btn" href="https://chromewebstore.google.com/detail/ggdhcadbfcjonlbkbphefignhoolmpko?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">FocusGuard Live</a>
+            <a class="social-btn" href="https://chromewebstore.google.com/detail/pdjebhcifgoembcidgjhdjohnkgcbflb?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">GNT Live</a>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- PROJECTS -->
     <section class="section" id="projects" aria-label="Projects">
-      <div class="wrap">
-        <header class="section__head reveal">
-          <p class="eyebrow">Product work</p>
-          <h2>Projects that ship</h2>
-          <p class="muted">Shipped and in-progress builds across productivity, security, and AI.</p>
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="label">Product work</span>
+          <h2 class="section__title">Projects that ship</h2>
+          <p class="section__sub">Shipped and in-progress builds across productivity, security, and AI.</p>
         </header>
-        <div class="grid grid--2">
-          <article class="panel reveal tilt" data-tilt>
-            <div class="panel__top">
+        <div class="card-grid card-grid--2">
+          <article class="card glass-card reveal" data-tilt>
+            <div class="card__top">
               <div>
-                <h3>FocusGuard — Reels & Shorts Blocker</h3>
-                <p class="muted">Chrome extension to remove short-form distractions and improve focus.</p>
+                <h3 class="card__title">GNT: Glass New Tab &mdash; iOS-Style Dashboard</h3>
               </div>
-              <span class="badge">Shipped</span>
+              <span class="chip chip--live">Shipped</span>
             </div>
-            <p class="muted">Blocks Shorts/Reels/TikTok, tracks focus, and keeps data local. Designed like a product, not a script.</p>
-            <div class="tags">
+            <p class="card__desc">Smooth iOS/macOS-inspired glass New Tab with Spotlight search and refined customization. Designed and crafted in India.</p>
+            <div class="tag-row">
+              <span class="tag">Chrome Extension</span><span class="tag">iOS-inspired UI</span><span class="tag">Productivity</span><span class="tag">Privacy-first</span>
+            </div>
+            <div class="card__actions">
+              <a class="btn btn--primary" target="_blank" rel="noopener noreferrer" href="https://chromewebstore.google.com/detail/pdjebhcifgoembcidgjhdjohnkgcbflb?utm_source=item-share-cb">Live on Chrome Web Store</a>
+            </div>
+          </article>
+
+          <article class="card glass-card reveal" data-tilt>
+            <div class="card__top">
+              <div>
+                <h3 class="card__title">FocusGuard &mdash; Reels &amp; Shorts Blocker</h3>
+                <p class="card__desc">Chrome extension to remove short-form distractions and improve focus.</p>
+              </div>
+              <span class="chip chip--live">Shipped</span>
+            </div>
+            <p class="card__desc">Blocks Shorts/Reels/TikTok, tracks focus, and keeps data local. Designed like a product, not a script.</p>
+            <div class="tag-row">
               <span class="tag">Chrome Extension</span><span class="tag">Privacy-first</span><span class="tag">UI/UX</span>
             </div>
-            <div class="panel__actions">
+            <div class="card__actions">
               <a class="btn btn--primary" target="_blank" rel="noopener noreferrer" href="https://chromewebstore.google.com/detail/ggdhcadbfcjonlbkbphefignhoolmpko?utm_source=item-share-cb">Live on Chrome Web Store</a>
             </div>
           </article>
 
-          <article class="panel reveal tilt" data-tilt>
-            <div class="panel__top">
+          <article class="card glass-card reveal" data-tilt>
+            <div class="card__top">
               <div>
-                <h3>Findora — Vulnerability Scanner</h3>
-                <p class="muted">AI-assisted web scanning with risk scoring and reports.</p>
+                <h3 class="card__title">Findora &mdash; Vulnerability Scanner</h3>
+                <p class="card__desc">AI-assisted web scanning with risk scoring and reports.</p>
               </div>
-              <span class="badge badge--soft">Security</span>
+              <span class="chip">Security</span>
             </div>
-            <p class="muted">Detects issues, assigns severity, and exports PDF/Excel for teams. Built with Python + AI to speed triage.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">AI</span><span class="tag">Reporting</span></div>
-            <div class="panel__actions">
-              <a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/developer-animesh7/Findora-Vulnerability-Scanner">GitHub</a>
+            <p class="card__desc">Detects issues, assigns severity, and exports PDF/Excel for teams. Built with Python + AI to speed triage.</p>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">AI</span><span class="tag">Reporting</span></div>
+            <div class="card__actions">
+              <a class="btn btn--glass" target="_blank" rel="noopener noreferrer" href="https://github.com/developer-animesh7/Findora-Vulnerability-Scanner">GitHub</a>
             </div>
           </article>
 
-          <article class="panel reveal tilt" data-tilt>
-            <div class="panel__top">
+          <article class="card glass-card reveal" data-tilt>
+            <div class="card__top">
               <div>
-                <h3>AI Fashion App</h3>
-                <p class="muted">Full-stack app integrating ML modules (ongoing).</p>
+                <h3 class="card__title">AI Fashion App</h3>
+                <p class="card__desc">Full-stack app integrating ML modules (ongoing).</p>
               </div>
-              <span class="badge badge--soft">In progress</span>
+              <span class="chip">In progress</span>
             </div>
-            <p class="muted">Responsive React + Node.js experience with ML-driven recommendations and modern UX polish.</p>
-            <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">ML</span></div>
+            <p class="card__desc">Responsive React + Node.js experience with ML-driven recommendations and modern UX polish.</p>
+            <div class="tag-row"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">ML</span></div>
           </article>
 
-          <article class="panel reveal tilt" data-tilt>
-            <div class="panel__top">
+          <article class="card glass-card reveal" data-tilt>
+            <div class="card__top">
               <div>
-                <h3>Face Recognition System</h3>
-                <p class="muted">Real-time authentication using deep learning.</p>
+                <h3 class="card__title">Face Recognition System</h3>
+                <p class="card__desc">Real-time authentication using deep learning.</p>
               </div>
-              <span class="badge badge--soft">Computer Vision</span>
+              <span class="chip">Computer Vision</span>
             </div>
-            <p class="muted">Built with Python + OpenCV for secure identity workflows. Focused on reliability and low-latency checks.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">ML</span></div>
-            <div class="panel__actions">
-              <a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/developer-animesh7/AI-Face-recognition-Attendance-System">GitHub</a>
+            <p class="card__desc">Built with Python + OpenCV for secure identity workflows. Focused on reliability and low-latency checks.</p>
+            <div class="tag-row"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">ML</span></div>
+            <div class="card__actions">
+              <a class="btn btn--glass" target="_blank" rel="noopener noreferrer" href="https://github.com/developer-animesh7/AI-Face-recognition-Attendance-System">GitHub</a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- EXPERIENCE -->
     <section class="section" id="experience" aria-label="Experience">
-      <div class="wrap">
-        <header class="section__head reveal">
-          <p class="eyebrow">Impact</p>
-          <h2>Experience</h2>
-          <p class="muted">Software engineering internships with security-aware, AI-driven outcomes.</p>
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="label">Impact</span>
+          <h2 class="section__title">Experience</h2>
+          <p class="section__sub">Software engineering internships with security-aware, AI-driven outcomes.</p>
         </header>
         <div class="timeline">
           <article class="timeline__item experience-card reveal">
             <div class="timeline__dot"></div>
-            <div class="timeline__body">
-              <div class="timeline__when">Jun 2025 – Aug 2025</div>
-              <h3>Ethical Hacking & Cyber Security Intern  IIT Jammu</h3>
-              <p class="muted">Hands-on vulnerability discovery and penetration testing practice.</p>
+            <div class="timeline__body glass-surface">
+              <span class="timeline__date">Jan 2026 &ndash; Present</span>
+              <h3>Full Stack Developer (AI Integration) &middot; Euphoria GenX</h3>
+              <p>Building real-world software with seamless AI integration.</p>
+            </div>
+          </article>
+
+          <article class="timeline__item experience-card reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__body glass-surface">
+              <span class="timeline__date">Jun 2025 &ndash; Aug 2025</span>
+              <h3>Ethical Hacking &amp; Cyber Security Intern &middot; IIT Jammu</h3>
+              <p>Hands-on vulnerability discovery and penetration testing practice.</p>
             </div>
           </article>
           <article class="timeline__item experience-card reveal">
             <div class="timeline__dot"></div>
-            <div class="timeline__body">
-              <div class="timeline__when">Jul 2025 – Dec 2025</div>
-              <h3>AI Research Intern  University of Calcutta</h3>
-              <p class="muted">Integrated AI/ML with IoT for production scenarios; model training + deployment considerations.</p>
+            <div class="timeline__body glass-surface">
+              <span class="timeline__date">Jul 2025 &ndash; Dec 2025</span>
+              <h3>AI Research Intern &middot; University of Calcutta</h3>
+              <p>Integrated AI/ML with IoT for production scenarios; model training + deployment considerations.</p>
             </div>
           </article>
           <article class="timeline__item experience-card reveal">
             <div class="timeline__dot"></div>
-            <div class="timeline__body">
-              <div class="timeline__when">Feb 2024 – Jul 2025</div>
-              <h3>Cyber Security Analyst Intern  Google (Remote)</h3>
-              <p class="muted">Incident analysis and security monitoring exposure with emphasis on practical response.</p>
+            <div class="timeline__body glass-surface">
+              <span class="timeline__date">Feb 2024 &ndash; Jul 2025</span>
+              <h3>Cyber Security Analyst Intern &middot; Google (Remote)</h3>
+              <p>Incident analysis and security monitoring exposure with emphasis on practical response.</p>
             </div>
           </article>
           <article class="timeline__item experience-card reveal">
             <div class="timeline__dot"></div>
-            <div class="timeline__body">
-              <div class="timeline__when">Jan 2024 – Jun 2024</div>
-              <h3>Cyber Security Specialist  Coursera</h3>
-              <p class="muted">Structured coursework and labs to strengthen security fundamentals.</p>
+            <div class="timeline__body glass-surface">
+              <span class="timeline__date">Jan 2024 &ndash; Jun 2024</span>
+              <h3>Cyber Security Specialist &middot; Coursera</h3>
+              <p>Structured coursework and labs to strengthen security fundamentals.</p>
             </div>
           </article>
           <article class="timeline__item experience-card reveal">
             <div class="timeline__dot"></div>
-            <div class="timeline__body">
-              <div class="timeline__when">Feb 2024 – Mar 2024</div>
-              <h3>Java Development Intern  CodeClause</h3>
-              <p class="muted">Applied Java fundamentals through deliverables and team reviews.</p>
+            <div class="timeline__body glass-surface">
+              <span class="timeline__date">Feb 2024 &ndash; Mar 2024</span>
+              <h3>Java Development Intern &middot; CodeClause</h3>
+              <p>Applied Java fundamentals through deliverables and team reviews.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- SKILLS -->
     <section class="section" id="skills" aria-label="Skills">
-      <div class="wrap">
-        <header class="section__head reveal">
-          <p class="eyebrow">Capability</p>
-          <h2>Skills & toolkit</h2>
-          <p class="muted">Focused on software engineering, with security awareness built in.</p>
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="label">Capability</span>
+          <h2 class="section__title">Skills &amp; toolkit</h2>
+          <p class="section__sub">Focused on software engineering, with security awareness built in.</p>
         </header>
-        <div class="grid grid--3 skills">
-          <div class="tile reveal tilt" data-tilt>
-            <h3>Languages</h3>
-            <div class="tags tags--wrap"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">C</span><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span><span class="tag">Dart</span></div>
+
+        <div class="skills-grid reveal" id="skillsGrid">
+          <!-- Floating arrow indicator -->
+          <div class="skills-arrow" id="skillsArrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 4l8 6-8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div class="tile reveal tilt" data-tilt>
-            <h3>Platforms & tools</h3>
-            <div class="tags tags--wrap"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">GitHub</span><span class="tag">Windows</span><span class="tag">Kali</span><span class="tag">Ubuntu</span></div>
+
+          <h3 class="skills-group__title">Languages</h3>
+          <div class="skills-list">
+            <div class="skill-item skill-item--primary glass-surface" data-skill>Python</div>
+            <div class="skill-item glass-surface" data-skill>JavaScript</div>
+            <div class="skill-item glass-surface" data-skill>Dart</div>
+            <div class="skill-item glass-surface" data-skill>Java</div>
+            <div class="skill-item glass-surface" data-skill>C</div>
+            <div class="skill-item glass-surface" data-skill>HTML / CSS</div>
           </div>
-          <div class="tile reveal tilt" data-tilt>
-            <h3>Security stack</h3>
-            <div class="tags tags--wrap"><span class="tag">Wireshark</span><span class="tag">Burp Suite</span><span class="tag">Autopsy</span></div>
+
+          <h3 class="skills-group__title">Frameworks &amp; tools</h3>
+          <div class="skills-list">
+            <div class="skill-item glass-surface" data-skill>React</div>
+            <div class="skill-item glass-surface" data-skill>Node.js</div>
+            <div class="skill-item glass-surface" data-skill>AWS</div>
+            <div class="skill-item glass-surface" data-skill>GitHub</div>
+            <div class="skill-item glass-surface" data-skill>Linux</div>
+            <div class="skill-item glass-surface" data-skill>Windows</div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- CERTIFICATIONS -->
     <section class="section" id="certs" aria-label="Certifications">
-      <div class="wrap">
-        <header class="section__head reveal">
-          <p class="eyebrow">Credibility</p>
-          <h2>Certifications</h2>
-          <p class="muted">Security and platform certifications that back the engineering work.</p>
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="label">Credibility</span>
+          <h2 class="section__title">Certifications</h2>
+          <p class="section__sub">Security and platform certifications that back the engineering work.</p>
         </header>
-        <div class="panel glass reveal">
-          <ul class="list list--2">
-            <li><strong>Ethical Hacking & Cyber Security</strong> — IIT Jammu (Aug 2025) — <a class="link" target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1ALRb7EjsVtAyw80cJspOBggDLwyaIy9O/view">Certificate</a></li>
-            <li><strong>Google Cybersecurity Professional Certificate</strong> — Google (Jul 2024) — <a class="link" target="_blank" rel="noopener noreferrer" href="https://www.coursera.org/account/accomplishments/professional-cert/HA4NJSD2WGGN?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=prof">Certificate</a></li>
-            <li><strong>NDG Linux Essentials</strong> — Cisco Networking Academy — <a class="link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/posts/animesh-patra2004_linux-essential-course-by-cisco-provided-activity-7165912901873065985-fQBA/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEjtF5EBLupU-bluPNtdWkLA7BG5qw8nOe8">Certificate</a></li>
-            <li><strong>Cybersecurity A Platform</strong> — Jayadhi Limited (Aug 2025)</li>
-            <li><strong>Connect and Protect: Networks and Network Security</strong> — Google/Coursera</li>
-            <li><strong>Assets, Threats, and Vulnerabilities</strong> — Google/Coursera</li>
-            <li><strong>Put It to Work: Prepare for Cybersecurity Jobs</strong> — Google/Coursera</li>
-            <li><strong>Web Development</strong> — Coursework</li>
-          </ul>
+        <div class="certs-grid reveal" aria-label="Certification list">
+          <article class="cert-card cert-card--highlight glass-surface">
+            <div class="cert-card__top">
+              <h3 class="cert-card__title">Oracle Certified AI Foundations Associate</h3>
+              <p class="cert-card__meta">Oracle &middot; Oct 2025</p>
+            </div>
+            <div class="cert-card__tags">
+              <span class="chip">AI / Artificial Intelligence</span>
+            </div>
+            <div class="cert-card__actions">
+              <a class="btn btn--primary" target="_blank" rel="noopener noreferrer" href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=1B02DEAEBD9309987374A1A54B066952459F34EE89399732EF6A94DF6D1C0643">Show Credential</a>
+            </div>
+          </article>
+
+          <article class="cert-card cert-card--highlight glass-surface">
+            <div class="cert-card__top">
+              <h3 class="cert-card__title">Artificial Intelligence Research Intern</h3>
+              <p class="cert-card__meta">University of Calcutta &middot; Jul 2025 &ndash; Dec 2025 &middot; 6 months</p>
+              <p class="cert-card__submeta">Kolkata, India (Hybrid)</p>
+            </div>
+            <div class="cert-card__tags">
+              <span class="chip">AI &amp; Android Development</span>
+            </div>
+          </article>
+
+          <article class="cert-card glass-surface">
+            <div class="cert-card__top">
+              <h3 class="cert-card__title">Ethical Hacking &amp; Cyber Security</h3>
+              <p class="cert-card__meta">IIT Jammu &middot; Aug 2025</p>
+            </div>
+            <div class="cert-card__actions">
+              <a class="btn btn--glass" target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1ALRb7EjsVtAyw80cJspOBggDLwyaIy9O/view">View Certificate</a>
+            </div>
+          </article>
+
+          <article class="cert-card glass-surface">
+            <div class="cert-card__top">
+              <h3 class="cert-card__title">Google Cybersecurity Professional Certificate</h3>
+              <p class="cert-card__meta">Google &middot; Jul 2024</p>
+            </div>
+            <div class="cert-card__actions">
+              <a class="btn btn--glass" target="_blank" rel="noopener noreferrer" href="https://www.coursera.org/account/accomplishments/professional-cert/HA4NJSD2WGGN?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=prof">View Certificate</a>
+            </div>
+          </article>
+
+          <article class="cert-card glass-surface">
+            <div class="cert-card__top">
+              <h3 class="cert-card__title">NDG Linux Essentials</h3>
+              <p class="cert-card__meta">Cisco Networking Academy</p>
+            </div>
+            <div class="cert-card__actions">
+              <a class="btn btn--glass" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/posts/animesh-patra2004_linux-essential-course-by-cisco-provided-activity-7165912901873065985-fQBA/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEjtF5EBLupU-bluPNtdWkLA7BG5qw8nOe8">View Certificate</a>
+            </div>
+          </article>
+
+          <article class="cert-card glass-surface">
+            <div class="cert-card__top">
+              <h3 class="cert-card__title">Web Development</h3>
+              <p class="cert-card__meta">Codeclause</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
+    <!-- EDUCATION -->
     <section class="section" id="education" aria-label="Education">
-      <div class="wrap">
-        <header class="section__head reveal">
-          <p class="eyebrow">Education</p>
-          <h2>Education</h2>
-          <p class="muted">B.Tech in Computer Science and Engineering with strong problem-solving and cybersecurity exposure.</p>
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="label">Education</span>
+          <h2 class="section__title">Education</h2>
+          <p class="section__sub">B.Tech in Computer Science and Engineering with strong problem-solving and cybersecurity exposure.</p>
         </header>
-        <div class="education reveal">
-          <a class="education__icon" aria-label="The Neotia University" href="https://www.tnu.in/" target="_blank" rel="noopener noreferrer"></a>
-          <div class="education__body">
+        <div class="edu-card glass-card reveal">
+          <a class="edu-card__icon" aria-label="The Neotia University" href="https://www.tnu.in/" target="_blank" rel="noopener noreferrer">
+            <img class="edu-card__logo" src="https://universityduniaus.s3.amazonaws.com/images/institute_logo/a2f2c6082d6e08e253f635b8cb6e3995.png" alt="The Neotia University (TNU) logo" loading="lazy" decoding="async" />
+          </a>
+          <div class="edu-card__body">
             <h3>The Neotia University</h3>
-            <p class="muted">Bachelor of Technology — BTech, Computer Science and Engineering</p>
-            <p class="education__skills">Cybersecurity, Problem Solving, plus 8 more skills</p>
+            <p>Bachelor of Technology &mdash; Computer Science and Engineering</p>
+            <span class="edu-card__skills">Cybersecurity, Problem Solving, plus 8 more skills</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section contact-final" id="contact" aria-label="Contact">
-      <div class="wrap">
-        <header class="section__head contact-head reveal">
-          <p class="eyebrow">Collaboration</p>
-          <div class="contact-title-wrap">
-            <h2 class="contact-title">Let&apos;s build something secure and meaningful.</h2>
-            <span class="contact-underline" aria-hidden="true"></span>
-          </div>
-          <p class="contact-sub">Open to software engineering roles, internships, and product collaborations.</p>
+    <!-- CONTACT -->
+    <section class="section section--contact" id="contact" aria-label="Contact">
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="label">Collaboration</span>
+          <h2 class="section__title section__title--lg">Let&apos;s build something secure<br/>and meaningful.</h2>
+          <p class="section__sub">Open to software engineering roles, internships, and product collaborations.</p>
         </header>
 
-        <div class="contact-shell reveal">
+        <div class="contact-panel glass-card reveal">
           <div class="contact-grid">
             <div class="contact-info">
               <h3>Reach me</h3>
-              <div class="contact-rows">
-                <div class="contact-row">
-                  <div class="contact-row__main">
-                    <span class="contact-dot" aria-hidden="true"></span>
-                    <div class="contact-row__text">
-                      <span class="contact-row__label">Email</span>
-                      <a class="contact-row__value" href="mailto:animeshpatra7908@gmail.com">animeshpatra7908@gmail.com</a>
+              <div class="contact-items">
+                <div class="contact-item contact-item--primary glass-surface">
+                  <div class="contact-item__left">
+                    <span class="contact-item__dot"></span>
+                    <div>
+                      <span class="contact-item__label">Email</span>
+                      <a class="contact-item__value" href="mailto:animeshpatra.dev@gmail.com">animeshpatra.dev@gmail.com</a>
                     </div>
                   </div>
-                  <button class="copy-btn" type="button" data-copy="animeshpatra7908@gmail.com">Copy</button>
+                  <button class="copy-btn" type="button" data-copy="animeshpatra.dev@gmail.com">Copy</button>
                 </div>
 
-                <a class="contact-row" href="https://www.linkedin.com/in/animesh-patra2004" target="_blank" rel="noopener noreferrer">
-                  <div class="contact-row__main">
-                    <span class="contact-dot" aria-hidden="true"></span>
-                    <div class="contact-row__text">
-                      <span class="contact-row__label">LinkedIn</span>
-                      <span class="contact-row__value">animesh-patra2004</span>
+                <a class="contact-item glass-surface" href="https://www.linkedin.com/in/animesh-patra2004" target="_blank" rel="noopener noreferrer">
+                  <div class="contact-item__left">
+                    <span class="contact-item__dot"></span>
+                    <div>
+                      <span class="contact-item__label">LinkedIn</span>
+                      <span class="contact-item__value">animesh-patra2004</span>
                     </div>
                   </div>
-                  <span class="contact-row__cta">Open</span>
+                  <span class="contact-item__arrow">&rarr;</span>
                 </a>
 
-                <a class="contact-row" href="https://github.com/developer-animesh7" target="_blank" rel="noopener noreferrer">
-                  <div class="contact-row__main">
-                    <span class="contact-dot" aria-hidden="true"></span>
-                    <div class="contact-row__text">
-                      <span class="contact-row__label">GitHub</span>
-                      <span class="contact-row__value">developer-animesh7</span>
+                <a class="contact-item glass-surface" href="https://github.com/developer-animesh7" target="_blank" rel="noopener noreferrer">
+                  <div class="contact-item__left">
+                    <span class="contact-item__dot"></span>
+                    <div>
+                      <span class="contact-item__label">GitHub</span>
+                      <span class="contact-item__value">developer-animesh7</span>
                     </div>
                   </div>
-                  <span class="contact-row__cta">Open</span>
+                  <span class="contact-item__arrow">&rarr;</span>
                 </a>
               </div>
 
-              <div class="trust-note">
-                <span class="trust-dot" aria-hidden="true"></span>
+              <div class="privacy-note glass-surface">
+                <span class="privacy-note__dot"></span>
                 <div>
-                  <div class="trust-title">Privacy-first communication</div>
-                  <div class="trust-copy">Phone shared on request.</div>
+                  <strong>Available for opportunities</strong>
+                  <span>Open to internships, freelance, and collaborations</span>
                 </div>
               </div>
             </div>
 
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form glass-surface" id="contactForm" action="https://formspree.io/f/mzdalgvj" method="POST">
               <h3>Send a note</h3>
-              <p class="muted">This opens your email client—no backend required.</p>
-              <label class="field"><span>Name</span><input name="name" type="text" autocomplete="name" placeholder="Your name" maxlength="80" required /></label>
-              <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="120" required /></label>
-              <label class="field"><span>Message</span><textarea name="message" rows="5" placeholder="What would you like to build?" maxlength="2000" required></textarea></label>
-              <button class="btn btn--primary" type="submit">Compose email</button>
+              <input type="hidden" name="_subject" value="New Portfolio Message" />
+              <input class="hp" type="text" name="_gotcha" autocomplete="off" tabindex="-1" aria-hidden="true" />
+              <p class="contact-form__desc">Send a message directly &mdash; I&rsquo;ll get back to you soon.</p>
+
+              <div class="contact-form__fields">
+                <label class="field" for="contactName"><span>Name</span><input id="contactName" name="name" type="text" autocomplete="name" placeholder="Your name" maxlength="60" required /></label>
+                <label class="field" for="contactEmail"><span>Email</span><input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="100" required /></label>
+                <label class="field" for="contactMessage">
+                  <span>Message</span>
+                  <textarea id="contactMessage" name="message" rows="4" placeholder="What would you like to build?" maxlength="2000" minlength="10" required></textarea>
+                  <div class="field-error" id="messageError" aria-live="polite"></div>
+                </label>
+              </div>
+
+              <div class="contact-form__footer">
+                <p class="contact-form__helper">Typically responds within 24 hours</p>
+                <button class="btn btn--primary" type="submit">
+                  <span class="btn__spinner" aria-hidden="true"></span>
+                  <span class="btn__label">Send Message</span>
+                </button>
+                <div class="form-status" id="contactStatus" role="status" aria-live="polite"></div>
+              </div>
             </form>
           </div>
         </div>
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="wrap footer__inner">
-        <p class="muted">© <span id="year"></span> Animesh Patra — engineered with craft.</p>
-        <a class="btn" href="#top">Back to top</a>
+    <!-- APPOINTMENT -->
+    <section class="section section--appointment" id="appointment" aria-label="Book an appointment">
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="label">Schedule</span>
+          <h2 class="section__title">Book an Appointment</h2>
+          <p class="section__sub">Want to discuss a project or opportunity? Pick a time that works for you.</p>
+        </header>
+        <div class="appointment-card glass-card reveal">
+          <div class="appointment-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+          </div>
+          <h3>Availability Schedule</h3>
+          <p class="appointment-card__timezone">All times in Indian Standard Time (IST)</p>
+
+          <div class="availability-status" role="status" aria-live="polite" aria-atomic="true">
+            <div class="availability-status__badge" id="availabilityBadge" data-state="offline">
+              <span class="availability-status__icon" aria-hidden="true">🔴</span>
+              <span class="availability-status__label" id="availabilityLabel">Currently Offline</span>
+            </div>
+            <div class="availability-status__sub" id="availabilitySub">Checking availability…</div>
+          </div>
+
+          <table class="schedule-table glass-surface" aria-label="Weekly availability schedule">
+            <thead>
+              <tr class="schedule-row schedule-row--header">
+                <th scope="col" class="schedule-day">Day</th>
+                <th scope="col" class="schedule-time">Hours</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="schedule-row" data-day="monday">
+                <th scope="row" class="schedule-day">Monday</th>
+                <td class="schedule-time">9:00 AM &ndash; 6:00 PM</td>
+              </tr>
+              <tr class="schedule-row" data-day="tuesday">
+                <th scope="row" class="schedule-day">Tuesday</th>
+                <td class="schedule-time">9:00 AM &ndash; 6:00 PM</td>
+              </tr>
+              <tr class="schedule-row" data-day="wednesday">
+                <th scope="row" class="schedule-day">Wednesday</th>
+                <td class="schedule-time">9:00 AM &ndash; 6:00 PM</td>
+              </tr>
+              <tr class="schedule-row" data-day="thursday">
+                <th scope="row" class="schedule-day">Thursday</th>
+                <td class="schedule-time">9:00 AM &ndash; 6:00 PM</td>
+              </tr>
+              <tr class="schedule-row" data-day="friday">
+                <th scope="row" class="schedule-day">Friday</th>
+                <td class="schedule-time">9:00 AM &ndash; 6:00 PM</td>
+              </tr>
+              <tr class="schedule-row" data-day="saturday">
+                <th scope="row" class="schedule-day">Saturday</th>
+                <td class="schedule-time">9:00 AM &ndash; 6:00 PM</td>
+              </tr>
+              <tr class="schedule-row schedule-row--sunday" data-day="sunday">
+                <th scope="row" class="schedule-day">Sunday</th>
+                <td class="schedule-time">6:00 PM &ndash; 7:00 PM</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <a class="btn btn--primary btn--glow" href="#contactForm" data-glow-target="#contactForm">Book Schedule</a>
+        </div>
       </div>
-    </footer>
+    </section>
   </main>
 
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img class="footer__logo profile-img" src="./assets/dp%20picture%202.png" alt="Animesh Patra" width="40" height="40" loading="lazy" decoding="async" />
+          <div>
+            <strong class="footer__name">Animesh Patra</strong>
+            <span class="footer__tagline">Software Engineer &middot; Security-first</span>
+          </div>
+        </div>
+        <div class="footer__columns">
+          <div class="footer__col">
+            <h4>Navigate</h4>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#certs">Certifications</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="footer__col">
+            <h4>Legal</h4>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms &amp; Conditions</a>
+            <a href="/refund">Refund Policy</a>
+          </div>
+          <div class="footer__col">
+            <h4>Connect</h4>
+            <a href="https://www.linkedin.com/in/animesh-patra2004" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/developer-animesh7" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="mailto:animeshpatra.dev@gmail.com">Email</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> Animesh Patra. All rights reserved.</p>
+        <a class="footer__back" href="#top">Back to top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
   <script type="application/ld+json" src="./schema.json"></script>
-  <script src="./script.js"></script>
+  <script src="./script.js" defer></script>
 </body>
 </html>

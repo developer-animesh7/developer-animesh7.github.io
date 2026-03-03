@@ -1,293 +1,573 @@
 (() => {
+  "use strict";
   const root = document.documentElement;
-  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const pointerFine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pointerFine = matchMedia("(pointer: fine)").matches;
 
-  // Theme (default to dark)
-  const themeToggle = document.getElementById('themeToggle');
-  const storedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  /* ======== THEME ======== */
+  const themeBtn = document.getElementById("themeToggle");
+  const stored = localStorage.getItem("theme");
+  const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
 
-  const applyTheme = (theme) => {
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+  const setIcon = (t) => {
+    if (!themeBtn) return;
+    const icon = themeBtn.querySelector(".theme-btn__icon");
+    if (icon) icon.textContent = t === "dark" ? "\u{1F319}" : "\u2600\uFE0F";
+    themeBtn.setAttribute("aria-label", t === "dark" ? "Switch to light mode" : "Switch to dark mode");
   };
 
-  if (storedTheme === 'light' || storedTheme === 'dark') {
-    applyTheme(storedTheme);
-  } else {
-    applyTheme(prefersDark ? 'dark' : 'dark');
-  }
+  const applyTheme = (t) => {
+    root.setAttribute("data-theme", t);
+    localStorage.setItem("theme", t);
+    setIcon(t);
+  };
 
-  if (themeToggle instanceof HTMLButtonElement) {
-    themeToggle.addEventListener('click', () => {
-      const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
+  applyTheme(stored === "light" || stored === "dark" ? stored : "dark");
+
+  if (themeBtn) {
+    themeBtn.addEventListener("click", () => {
+      const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.classList.add("theme-switch");
+      applyTheme(next);
+      setTimeout(() => root.classList.remove("theme-switch"), 600);
     });
   }
 
-  // Mobile nav
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileNav = document.getElementById('mobileNav');
+  /* ======== MOBILE NAV ======== */
+  const burger = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
 
-  if (menuToggle instanceof HTMLButtonElement && mobileNav instanceof HTMLElement) {
-    const close = () => {
-      mobileNav.hidden = true;
-      menuToggle.setAttribute('aria-expanded', 'false');
-    };
+  if (burger && mobileNav) {
+    const OPEN_CLASS = "nav-open";
 
     const open = () => {
+      burger.setAttribute("aria-expanded", "true");
+      document.body.classList.add(OPEN_CLASS);
+
+      // Unhide first so transitions can run.
       mobileNav.hidden = false;
-      menuToggle.setAttribute('aria-expanded', 'true');
+      mobileNav.classList.add("is-animating");
+      requestAnimationFrame(() => {
+        mobileNav.classList.add("is-open");
+        setTimeout(() => mobileNav.classList.remove("is-animating"), 320);
+      });
     };
 
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      if (expanded) close(); else open();
-    });
+    const close = () => {
+      burger.setAttribute("aria-expanded", "false");
+      document.body.classList.remove(OPEN_CLASS);
 
-    mobileNav.addEventListener('click', (e) => {
-      const t = e.target;
-      if (t instanceof HTMLElement && t.closest('a[href^="#"]')) close();
-    });
+      mobileNav.classList.add("is-animating");
+      mobileNav.classList.remove("is-open");
+      // Match CSS transition duration.
+      setTimeout(() => {
+        mobileNav.hidden = true;
+        mobileNav.classList.remove("is-animating");
+      }, 260);
+    };
 
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    burger.addEventListener("click", () => burger.getAttribute("aria-expanded") === "true" ? close() : open());
 
-    const mq = window.matchMedia('(min-width: 820px)');
-    if (mq.addEventListener) mq.addEventListener('change', () => close());
-    else if (mq.addListener) mq.addListener(() => close());
+    // Close on any link click (hash links + route links).
+    mobileNav.addEventListener("click", (e) => { if (e.target.closest("a")) close(); });
+
+    addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    const mq = matchMedia("(min-width: 820px)");
+    try { mq.addEventListener("change", close); } catch { mq.addListener(close); }
   }
 
-  const logo = document.querySelector('.logo');
-  if (logo instanceof HTMLAnchorElement) {
-    logo.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'auto' });
-      window.location.reload();
-    });
-  }
+  /* ======== FOOTER YEAR ======== */
+  const yr = document.getElementById("year");
+  if (yr) yr.textContent = String(new Date().getFullYear());
 
-  // Footer year
-  const year = document.getElementById('year');
-  if (year) year.textContent = String(new Date().getFullYear());
-
-  // Image fallback (CSP-safe replacement for inline onerror)
-  const imgsWithFallback = Array.from(document.querySelectorAll('img[data-fallback-src]'));
-  imgsWithFallback.forEach((img) => {
-    const fallbackSrc = img.getAttribute('data-fallback-src');
-    if (!fallbackSrc) return;
-    img.addEventListener('error', () => {
-      if (img.getAttribute('data-fallback-applied') === 'true') return;
-      img.setAttribute('data-fallback-applied', 'true');
-      img.src = fallbackSrc;
-    }, { once: true });
+  /* ======== IMAGE FALLBACK ======== */
+  document.querySelectorAll("img[data-fallback-src]").forEach((img) => {
+    const fb = img.getAttribute("data-fallback-src");
+    if (fb) img.addEventListener("error", () => { if (img.dataset.fallbackApplied) return; img.dataset.fallbackApplied = "1"; img.src = fb; }, { once: true });
   });
 
-  // Reveal on scroll (smooth, one-time)
-  const revealEls = Array.from(document.querySelectorAll('.reveal'));
-
-  const markVisibleAboveFold = () => {
-    const fold = window.innerHeight * 1.05;
-    for (const el of revealEls) {
-      const rect = el.getBoundingClientRect();
-      if (rect.bottom >= 0 && rect.top <= fold) el.classList.add('active', 'is-visible');
-    }
+  /* ======== REVEAL ON SCROLL ======== */
+  const reveals = [...document.querySelectorAll(".reveal")];
+  const markAbove = () => {
+    const fold = innerHeight * 1.05;
+    reveals.forEach((el) => { const r = el.getBoundingClientRect(); if (r.bottom >= 0 && r.top <= fold) el.classList.add("active", "is-visible"); });
   };
 
   try {
-    markVisibleAboveFold();
-    root.classList.add('js');
-
+    markAbove();
+    root.classList.add("js");
     if (reducedMotion) {
-      for (const el of revealEls) el.classList.add('active', 'is-visible');
-    } else if ('IntersectionObserver' in window) {
+      reveals.forEach((el) => el.classList.add("active", "is-visible"));
+    } else if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active', 'is-visible');
-            io.unobserve(entry.target);
-          }
-        }
-      }, { threshold: 0.25 });
-      for (const el of revealEls) io.observe(el);
-      window.addEventListener('resize', () => markVisibleAboveFold(), { passive: true });
+        entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("active", "is-visible"); io.unobserve(entry.target); } });
+      }, { threshold: 0.12 });
+      reveals.forEach((el) => io.observe(el));
+      addEventListener("resize", markAbove, { passive: true });
     } else {
-      for (const el of revealEls) el.classList.add('active', 'is-visible');
+      reveals.forEach((el) => el.classList.add("active", "is-visible"));
     }
-  } catch (err) {
-    root.classList.remove('js');
-    for (const el of revealEls) el.classList.add('active', 'is-visible');
+  } catch {
+    root.classList.remove("js");
+    reveals.forEach((el) => el.classList.add("active", "is-visible"));
   }
 
-  // Experience cards: scroll reveal + active dots
-  const experienceCards = Array.from(document.querySelectorAll('.experience-card'));
-  if (experienceCards.length) {
+  /* ======== EXPERIENCE CARDS ======== */
+  const expCards = [...document.querySelectorAll(".experience-card")];
+  if (expCards.length) {
     if (reducedMotion) {
-      for (const card of experienceCards) {
-        card.classList.add('visible', 'is-visible');
-        const dot = card.querySelector('.timeline__dot');
-        if (dot) dot.classList.add('active');
-      }
-    } else if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries, obs) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible', 'is-visible');
-            const dot = entry.target.querySelector('.timeline__dot');
-            if (dot) dot.classList.add('active');
-            obs.unobserve(entry.target);
+      expCards.forEach((c) => { c.classList.add("visible", "is-visible"); const d = c.querySelector(".timeline__dot"); if (d) d.classList.add("active"); });
+    } else if ("IntersectionObserver" in window) {
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible", "is-visible");
+            const d = e.target.querySelector(".timeline__dot");
+            if (d) d.classList.add("active");
+            o.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      expCards.forEach((c) => obs.observe(c));
+    } else {
+      expCards.forEach((c) => { c.classList.add("visible", "is-visible"); const d = c.querySelector(".timeline__dot"); if (d) d.classList.add("active"); });
+    }
+  }
+
+  /* ======== TILT (glass depth) ======== */
+  if (!reducedMotion && pointerFine) {
+    document.querySelectorAll("[data-tilt]").forEach((el) => {
+      const max = 5;
+      el.addEventListener("mousemove", (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        const ry = (px - 0.5) * max;
+        const rx = -(py - 0.5) * max;
+        el.style.transform = `perspective(1200px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) scale(1.015)`;
+      });
+      el.addEventListener("mouseleave", () => {
+        el.style.transform = "perspective(1200px) rotateX(0) rotateY(0) scale(1)";
+      });
+    });
+  }
+
+  /* ======== SMOOTH SCROLL ======== */
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const id = link.getAttribute("href");
+      if (!id || id === "#") return;
+      e.preventDefault();
+      if (id === "#top") { scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" }); return; }
+      const t = document.querySelector(id);
+      if (t) {
+        t.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+
+        const glowSel = link.getAttribute("data-glow-target");
+        if (glowSel) {
+          const el = document.querySelector(glowSel);
+          if (el) {
+            // Reset if already active
+            el.classList.remove("glow-focus");
+            // Next tick so re-adding retriggers animation
+            requestAnimationFrame(() => {
+              el.classList.add("glow-focus");
+              setTimeout(() => el.classList.remove("glow-focus"), 2000);
+            });
           }
         }
-      }, { threshold: 0.35 });
-
-      for (const card of experienceCards) observer.observe(card);
-    } else {
-      for (const card of experienceCards) {
-        card.classList.add('visible', 'is-visible');
-        const dot = card.querySelector('.timeline__dot');
-        if (dot) dot.classList.add('active');
       }
-    }
-  }
-
-  // Tilt interactions
-  if (!reducedMotion && pointerFine) {
-    const tiltTargets = Array.from(document.querySelectorAll('[data-tilt]'));
-    tiltTargets.forEach((el) => {
-      const max = 8;
-      const handleMove = (e) => {
-        const rect = el.getBoundingClientRect();
-        const px = (e.clientX - rect.left) / rect.width;
-        const py = (e.clientY - rect.top) / rect.height;
-        const tiltY = (px - 0.5) * max;
-        const tiltX = -(py - 0.5) * max;
-        el.style.transform = `perspective(1200px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
-      };
-
-      const handleLeave = () => { el.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)'; };
-      el.addEventListener('mousemove', handleMove);
-      el.addEventListener('mouseleave', handleLeave);
-    });
-  }
-
-  // Smooth scroll for in-page anchors (back-to-top, nav links)
-  const anchorLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
-  anchorLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const targetId = link.getAttribute('href');
-      if (!targetId || targetId === '#') return;
-      const targetEl = document.querySelector(targetId);
-      e.preventDefault();
-      if (targetId === '#top') {
-        window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
-        return;
-      }
-      if (!targetEl) return;
-      targetEl.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
     });
   });
 
-  // Parallax background (hero)
-  const heroBg = document.querySelector('.bg-layer');
-  if (heroBg && !reducedMotion) {
-    const updateParallax = (e) => {
-      const { innerWidth: w, innerHeight: h } = window;
-      const x = ((e.clientX / w) - 0.5) * 14;
-      const y = ((e.clientY / h) - 0.5) * 14;
-      heroBg.style.setProperty('--px', `${x.toFixed(2)}px`);
-      heroBg.style.setProperty('--py', `${y.toFixed(2)}px`);
-    };
-    window.addEventListener('mousemove', updateParallax);
+  /* ======== PARALLAX BG ======== */
+  const heroBg = document.querySelector(".hero__bg");
+  if (heroBg && !reducedMotion && pointerFine) {
+    addEventListener("mousemove", (e) => {
+      const x = ((e.clientX / innerWidth) - 0.5) * 20;
+      const y = ((e.clientY / innerHeight) - 0.5) * 20;
+      heroBg.style.setProperty("--px", x.toFixed(2) + "px");
+      heroBg.style.setProperty("--py", y.toFixed(2) + "px");
+    }, { passive: true });
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const textEl = document.getElementById("typing-text");
-    const cursor = document.getElementById("typing-cursor");
+  /* ======== SKILLS ARROW TRACKER ======== */
+  const skillsGrid  = document.getElementById('skillsGrid');
+  const skillsArrow = document.getElementById('skillsArrow');
+  if (skillsGrid && skillsArrow && pointerFine && !reducedMotion) {
+    const items = [...skillsGrid.querySelectorAll('[data-skill]')];
+    let currentItem = null;
 
-    const isMobile = window.innerWidth < 640;
-    const TYPE_SPEED = isMobile ? 28 : 40;
+    items.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        currentItem = item;
+        const gridRect  = skillsGrid.getBoundingClientRect();
+        const itemRect  = item.getBoundingClientRect();
+        const top  = itemRect.top  - gridRect.top + (itemRect.height / 2) - 12;
+        const left = itemRect.left - gridRect.left - 30;
+        skillsArrow.style.setProperty('--arrow-y', top + 'px');
+        skillsArrow.style.setProperty('--arrow-x', left + 'px');
+        skillsArrow.classList.add('visible');
+      });
+    });
 
-    const steps = [
-      "Hello, I’m Animesh.",
-      "How can I help you?",
-      "Software engineer · security-first thinker\nI build secure software and real-world tools."
-    ];
+    skillsGrid.addEventListener('mouseleave', () => {
+      currentItem = null;
+      skillsArrow.classList.remove('visible');
+    });
+  }
 
-    let stepIndex = 0;
-    let charIndex = 0;
-
-    function typeStep() {
-      if (stepIndex >= steps.length) {
-        cursor.remove(); // remove cursor at end
-        return;
+  /* ======== HEADER SCROLL ======== */
+  const header = document.querySelector(".header");
+  if (header) {
+    let ticking = false;
+    addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          header.classList.toggle("scrolled", scrollY > 40);
+          ticking = false;
+        });
+        ticking = true;
       }
+    }, { passive: true });
+  }
 
-      const text = steps[stepIndex];
-
-      function typeChar() {
-        if (charIndex < text.length) {
-          textEl.textContent += text[charIndex++];
-          setTimeout(typeChar, TYPE_SPEED);
-        } else {
-          // line finished
-          setTimeout(() => {
-            charIndex = 0;
-            stepIndex++;
-
-            // Clear text ONLY if next step exists
-            if (stepIndex < steps.length) {
-              textEl.textContent = "";
-              setTimeout(typeStep, 400);
-            } else {
-              // last line → keep text, remove cursor
-              cursor.remove();
+  /* ======== NAV HIGHLIGHT ======== */
+  const sections = [...document.querySelectorAll("section[id]")];
+  const navLinks = [...document.querySelectorAll('.nav__link[href^="#"]')];
+  if (sections.length && navLinks.length) {
+    let navTicking = false;
+    addEventListener("scroll", () => {
+      if (!navTicking) {
+        requestAnimationFrame(() => {
+          const pos = scrollY + 140;
+          for (const s of sections) {
+            const top = s.offsetTop;
+            const h = s.offsetHeight;
+            const id = s.getAttribute("id");
+            if (pos >= top && pos < top + h) {
+              navLinks.forEach((l) => l.classList.toggle("nav__link--active", l.getAttribute("href") === "#" + id));
             }
-          }, 600);
-        }
+          }
+          navTicking = false;
+        });
+        navTicking = true;
       }
+    }, { passive: true });
+  }
 
-      typeChar();
+  /* ======== TYPING ANIMATION ======== */
+  document.addEventListener("DOMContentLoaded", () => {
+    const el = document.getElementById("typing-text");
+    const cur = document.getElementById("typing-cursor");
+    if (!el || !cur) return;
+    const speed = innerWidth < 640 ? 30 : 42;
+    const steps = [
+      "Hello, I\u2019m Animesh!",
+      "How can I help you?",
+      "Security-First Software Engineer\nbuilding real-world solutions."
+    ];
+    let si = 0, ci = 0;
+    function go() {
+      if (si >= steps.length) { cur.remove(); return; }
+      const txt = steps[si];
+      function type() {
+        if (ci < txt.length) { el.textContent += txt[ci++]; setTimeout(type, speed); }
+        else { setTimeout(() => { ci = 0; si++; if (si < steps.length) { el.textContent = ""; setTimeout(go, 450); } else cur.remove(); }, 700); }
+      }
+      type();
     }
-
-    // start fresh every reload
-    textEl.textContent = "";
-    typeStep();
+    el.textContent = "";
+    go();
   });
 
-  // Contact mailto
-  const form = document.getElementById('contactForm');
-  if (form instanceof HTMLFormElement) {
-    form.addEventListener('submit', (e) => {
+  /* ======== CONTACT FORM ======== */
+  const form = document.getElementById("contactForm");
+  if (form) {
+    const statusEl = document.getElementById("contactStatus");
+    const messageErrorEl = document.getElementById("messageError");
+    let inFlight = false;
+    let lastSubmitAt = 0;
+
+    const sanitizePlainText = (value, maxLen, opts) => {
+      const options = opts || {};
+      let s = String(value ?? "");
+      // Normalize newlines, strip control chars (prevents header/format injection quirks).
+      s = s.replace(/\r\n?/g, "\n");
+      s = s.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "");
+      if (options.singleLine) s = s.replace(/\n+/g, " ");
+      s = s.trim();
+      if (Number.isFinite(maxLen) && maxLen > 0 && s.length > maxLen) s = s.slice(0, maxLen);
+      return s;
+    };
+
+    const isHttpsUrl = (u) => {
+      try { return new URL(u, location.href).protocol === "https:"; }
+      catch { return false; }
+    };
+
+    const setStatus = (text, kind) => {
+      if (!statusEl) return;
+      statusEl.classList.remove("is-success", "is-error");
+      if (kind) statusEl.classList.add(kind);
+      statusEl.textContent = text || "";
+    };
+
+    const setMessageError = (text) => {
+      if (!messageErrorEl) return;
+      messageErrorEl.textContent = text || "";
+    };
+
+    const setSubmitting = (isSubmitting) => {
+      const btn = form.querySelector('button[type="submit"]');
+      if (!btn) return;
+      btn.disabled = Boolean(isSubmitting);
+      btn.classList.toggle("is-loading", Boolean(isSubmitting));
+    };
+
+    form.addEventListener("submit", async (e) => {
+      // Pure HTML fallback still works if JS is disabled.
+      // With JS enabled, we submit via fetch to show inline success only after Formspree confirms.
+      if (!form.action) return;
+      if (!isHttpsUrl(form.action)) {
+        e.preventDefault();
+        setStatus("Secure submission is unavailable. Please try again later.", "is-error");
+        return;
+      }
       e.preventDefault();
 
-      const data = new FormData(form);
-      const clamp = (s, max) => s.length > max ? s.slice(0, max) : s;
-      const normalize = (s) => s.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+      // Client-side throttling to block rapid re-submits (in addition to disabling button while sending).
+      const now = Date.now();
+      if (inFlight) return;
+      if (now - lastSubmitAt < 6000) {
+        setStatus("Please wait a few seconds before sending another message.", "is-error");
+        return;
+      }
+      lastSubmitAt = now;
+      inFlight = true;
 
-      const name = clamp(normalize(String(data.get('name') || '').trim()), 80);
-      const email = clamp(normalize(String(data.get('email') || '').trim()), 120);
-      const message = clamp(normalize(String(data.get('message') || '').trim()), 2000);
+      const nameInput = form.querySelector('input[name="name"]');
+      const emailInput = form.querySelector('input[name="email"]');
+      const messageInput = form.querySelector('textarea[name="message"]');
+      const gotchaInput = form.querySelector('input[name="_gotcha"]');
 
-      const subject = encodeURIComponent(`Portfolio inquiry from ${name || 'Someone'}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`);
+      // Honeypot: if filled, silently pretend success.
+      if (gotchaInput && String(gotchaInput.value || "").trim().length) {
+        setStatus("Message sent successfully!", "is-success");
+        form.reset();
+        inFlight = false;
+        return;
+      }
 
-      window.location.href = `mailto:animeshpatra7908@gmail.com?subject=${subject}&body=${body}`;
+      if (nameInput) nameInput.value = sanitizePlainText(nameInput.value, 60, { singleLine: true });
+      if (emailInput) emailInput.value = sanitizePlainText(emailInput.value, 100, { singleLine: true });
+      if (messageInput) messageInput.value = sanitizePlainText(messageInput.value, 2000, { singleLine: false });
+
+      setMessageError("");
+      const msgLen = messageInput ? String(messageInput.value || "").trim().length : 0;
+      if (messageInput && msgLen > 0 && msgLen < 10) {
+        setMessageError("Message must be at least 10 characters.");
+        messageInput.focus();
+        inFlight = false;
+        return;
+      }
+
+      if (!form.checkValidity()) {
+        setStatus("Please fill out all fields correctly.", "is-error");
+        form.reportValidity();
+        inFlight = false;
+        return;
+      }
+
+      setStatus("");
+      setSubmitting(true);
+
+      try {
+        const resp = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" }
+        });
+
+        if (resp.ok) {
+          setStatus("Message sent successfully!", "is-success");
+          form.reset();
+          return;
+        }
+
+        let message = "Something went wrong. Please try again.";
+        try {
+          const data = await resp.json();
+          if (data && Array.isArray(data.errors) && data.errors.length && data.errors[0].message) {
+            message = data.errors[0].message;
+          }
+        } catch {
+          // ignore
+        }
+        setStatus(message, "is-error");
+      } catch {
+        // Network/CSP issue: fall back to native form POST navigation.
+        form.submit();
+      } finally {
+        setSubmitting(false);
+        inFlight = false;
+      }
     });
   }
 
-  const copyButtons = Array.from(document.querySelectorAll('[data-copy]'));
-  copyButtons.forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      const text = btn.getAttribute('data-copy');
+  /* ======== COPY BUTTONS ======== */
+  document.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = btn.getAttribute("data-copy");
       if (!text) return;
-      const original = btn.textContent || 'Copy';
-      try {
-        await navigator.clipboard.writeText(text);
-        btn.textContent = 'Copied';
-      } catch (err) {
-        btn.textContent = 'Press Ctrl+C';
-      }
-      setTimeout(() => { btn.textContent = original; }, 1400);
+      const orig = btn.textContent || "Copy";
+      try { await navigator.clipboard.writeText(text); btn.textContent = "\u2713 Copied"; }
+      catch { btn.textContent = "Press Ctrl+C"; }
+      setTimeout(() => { btn.textContent = orig; }, 1500);
     });
   });
+
+  /* ======== AVAILABILITY (IST) ======== */
+  const initAvailability = () => {
+    const badge = document.getElementById("availabilityBadge");
+    const label = document.getElementById("availabilityLabel");
+    const sub = document.getElementById("availabilitySub");
+    const wrap = badge ? badge.closest(".availability-status") : null;
+    const rows = [...document.querySelectorAll('.schedule-row[data-day]')];
+    if (!badge || !label || !sub || !wrap || !rows.length) return;
+
+    const schedule = {
+      monday: { open: "09:00", close: "18:00" },
+      tuesday: { open: "09:00", close: "18:00" },
+      wednesday: { open: "09:00", close: "18:00" },
+      thursday: { open: "09:00", close: "18:00" },
+      friday: { open: "09:00", close: "18:00" },
+      saturday: { open: "09:00", close: "18:00" },
+      sunday: { open: "18:00", close: "19:00" }
+    };
+
+    const order = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    const istFmt = new Intl.DateTimeFormat("en-IN", {
+      timeZone: "Asia/Kolkata",
+      weekday: "long",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
+
+    const getISTNow = () => {
+      const parts = istFmt.formatToParts(new Date());
+      const map = {};
+      for (const p of parts) {
+        if (p.type !== "literal") map[p.type] = p.value;
+      }
+      const weekday = String(map.weekday || "").toLowerCase();
+      const hour = Number.parseInt(map.hour || "0", 10);
+      const minute = Number.parseInt(map.minute || "0", 10);
+      return { weekday, minutes: (hour * 60) + minute };
+    };
+
+    const toMins = (hhmm) => {
+      const [hh, mm] = String(hhmm).split(":").map((v) => Number.parseInt(v, 10));
+      return (hh * 60) + (mm || 0);
+    };
+
+    const fmtDuration = (mins) => {
+      const m = Math.max(0, Math.round(mins));
+      const h = Math.floor(m / 60);
+      const r = m % 60;
+      if (h <= 0) return `${r}m`;
+      return `${h}h ${r}m`;
+    };
+
+    const fmtTime12 = (mins) => {
+      const m = ((mins % 1440) + 1440) % 1440;
+      let hh = Math.floor(m / 60);
+      const mm = m % 60;
+      const ampm = hh >= 12 ? "PM" : "AM";
+      hh = hh % 12;
+      if (hh === 0) hh = 12;
+      return `${hh}:${String(mm).padStart(2, "0")} ${ampm}`;
+    };
+
+    const titleCase = (k) => k ? (k[0].toUpperCase() + k.slice(1)) : k;
+
+    const setTodayRow = (weekdayKey) => {
+      rows.forEach((r) => r.classList.toggle("is-today", r.getAttribute("data-day") === weekdayKey));
+    };
+
+    const setState = ({ state, icon, text, subtext }) => {
+      wrap.classList.add("is-updating");
+      badge.dataset.state = state;
+      const iconEl = badge.querySelector(".availability-status__icon");
+      if (iconEl) iconEl.textContent = icon;
+      label.textContent = text;
+      sub.textContent = subtext;
+      setTimeout(() => wrap.classList.remove("is-updating"), 180);
+    };
+
+    const tick = () => {
+      const now = getISTNow();
+      const dayKey = order.includes(now.weekday) ? now.weekday : "monday";
+      setTodayRow(dayKey);
+
+      const todays = schedule[dayKey];
+      if (!todays) return;
+      const open = toMins(todays.open);
+      const close = toMins(todays.close);
+      const t = now.minutes;
+
+      if (t >= open && t < close) {
+        const remaining = close - t;
+        setState({
+          state: "available",
+          icon: "🟢",
+          text: "Available Now",
+          subtext: `Closes in ${fmtDuration(remaining)}`
+        });
+        return;
+      }
+
+      // Offline: find next opening.
+      if (t < open) {
+        setState({
+          state: "offline",
+          icon: "🔴",
+          text: "Currently Offline",
+          subtext: `Opens in ${fmtDuration(open - t)}`
+        });
+        return;
+      }
+
+      const todayIdx = order.indexOf(dayKey);
+      let daysUntil = 1;
+      let nextKey = order[(todayIdx + 1) % 7];
+      while (daysUntil <= 7) {
+        const s = schedule[nextKey];
+        if (s && s.open) break;
+        daysUntil += 1;
+        nextKey = order[(todayIdx + daysUntil) % 7];
+      }
+
+      const nextOpen = schedule[nextKey] ? toMins(schedule[nextKey].open) : 540;
+      const when = daysUntil === 1
+        ? `Opens tomorrow at ${fmtTime12(nextOpen)}`
+        : `Opens ${titleCase(nextKey)} at ${fmtTime12(nextOpen)}`;
+
+      setState({
+        state: "offline",
+        icon: "🔴",
+        text: "Currently Offline",
+        subtext: when
+      });
+    };
+
+    tick();
+    setInterval(tick, 60_000);
+  };
+
+  try { initAvailability(); } catch { /* avoid breaking page */ }
 })();
