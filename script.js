@@ -39,6 +39,8 @@
 
   if (burger && mobileNav) {
     const OPEN_CLASS = "nav-open";
+    const OPEN_MS = 220;
+    const CLOSE_MS = 200;
 
     const open = () => {
       burger.setAttribute("aria-expanded", "true");
@@ -49,7 +51,7 @@
       mobileNav.classList.add("is-animating");
       requestAnimationFrame(() => {
         mobileNav.classList.add("is-open");
-        setTimeout(() => mobileNav.classList.remove("is-animating"), 320);
+        setTimeout(() => mobileNav.classList.remove("is-animating"), OPEN_MS);
       });
     };
 
@@ -63,7 +65,7 @@
       setTimeout(() => {
         mobileNav.hidden = true;
         mobileNav.classList.remove("is-animating");
-      }, 260);
+      }, CLOSE_MS);
     };
 
     burger.addEventListener("click", () => burger.getAttribute("aria-expanded") === "true" ? close() : open());

@@ -303,6 +303,22 @@ body::before{
   .btn,.cta-btn,.theme-btn,.burger,.social-btn,.contact-item{min-height:44px}
 }
 
+/* Touch devices: avoid hover-only transforms (keeps UI stable and reduces GPU work) */
+@media (hover:none) and (pointer:coarse){
+  .logo:hover .logo__img,
+  .theme-btn:hover,
+  .cta-btn:hover,
+  .btn--glass:hover,
+  .btn--outline:hover,
+  .btn--primary:hover,
+  .stat:hover,
+  .footer__col a:hover,
+  .footer__back:hover{
+    transform:none;
+    box-shadow:inherit;
+  }
+}
+
 /* ================================ BUTTONS ================================ */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
@@ -1191,11 +1207,79 @@ input::placeholder,textarea::placeholder{color:var(--text-tertiary)}
 }
 
 @media(max-width:768px){
+  :root{
+    /* Mobile perf: faster transitions, lighter shadows */
+    --dur:.2s;
+    --shadow-sm: 0 2px 12px rgba(0,0,0,0.26);
+    --shadow-md: 0 10px 28px rgba(0,0,0,0.30), 0 0 0 .5px rgba(255,255,255,0.05);
+    --shadow-lg: 0 16px 44px rgba(0,0,0,0.34), 0 0 0 .5px rgba(255,255,255,0.06);
+    --shadow-glow: 0 0 0 1px rgba(100,180,255,0.12), 0 10px 36px rgba(100,180,255,0.10);
+    --shadow-btn: 0 6px 22px rgba(52,120,246,0.30), 0 0 0 .5px rgba(255,255,255,0.08);
+  }
+
+  /* Remove heavy ambient layers on mobile */
+  .orb{display:none}
+
+  /* Disable blur-heavy glass on mobile/tablet */
+  :where(
+    .header,
+    .mobile-nav,
+    .theme-btn,
+    .btn--glass,
+    .btn--outline,
+    .status-pill,
+    .skip,
+    .glass-card,
+    .glass-surface,
+    .contact-info,
+    .contact-form,
+    .footer
+  ){
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+  }
+
+  /* Mobile drawer (off-canvas) */
+  .mobile-nav{
+    position:fixed;
+    top:0;
+    right:0;
+    left:auto;
+    width:min(85vw,320px);
+    height:100vh;
+    max-height:none;
+    border-bottom:none;
+    border-left:1px solid var(--glass-border);
+    z-index:95; /* above content, below header */
+    opacity:1;
+    transform:translate3d(100%,0,0);
+    transition:transform var(--dur) var(--ease);
+    will-change:transform;
+    pointer-events:none;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding-top:72px; /* keep header buttons unobstructed */
+  }
+  .mobile-nav__inner{padding:10px 0 18px}
+  .mobile-nav.is-open{transform:translate3d(0,0,0);pointer-events:auto}
+
+  /* Reduce scroll repaint cost in hero background */
+  .hero__bg{transform:none;transition:none;filter:none}
+
+  /* Mobile: keep reveal as subtle fade-in only */
+  .reveal{transform:none;filter:none;transition:opacity var(--dur) var(--ease);will-change:auto}
+
+  /* Disable infinite pulse on mobile */
+  .availability-status__badge[data-state="available"]{animation:none}
+
   .nav{display:none}
   .burger{display:flex}
   .cert-list{columns:1}
-  .footer__columns{grid-template-columns:repeat(2,1fr)}
+  .footer__columns{grid-template-columns:1fr;gap:18px}
   .footer__inner{flex-direction:column;align-items:flex-start;gap:14px}
+  .footer__top{gap:18px}
+  .footer__bottom{padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+  .footer__col a{display:flex;align-items:center;min-height:44px;padding:6px 0;line-height:1.6}
   .contact-panel{padding:22px}
   .contact-grid{grid-template-columns:1fr;gap:22px}
   .policy-content{padding:24px 20px}
