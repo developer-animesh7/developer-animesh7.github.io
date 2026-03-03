@@ -56,13 +56,16 @@
   --max-w:         1200px;
 
   /* Motion */
-  --ease:          cubic-bezier(.25,.46,.45,.94);
+  --ease:          cubic-bezier(.4,0,.2,1);
   /* Keep names for backwards-compat, but standardize easing site-wide */
   --ease-spring:   var(--ease);
   --ease-bounce:   var(--ease);
-  /* Hover/micro-interactions: 0.25s–0.3s */
-  --dur:           .28s;
+  /* Hover/micro-interactions */
+  --dur:           .22s;
   --dur-slow:      .6s;
+
+  /* Solid elevated surface (used for mobile drawer) */
+  --bg-elevated:   rgba(15,23,42,0.98);
 }
 
 /* ================================ LIGHT MODE ================================ */
@@ -95,6 +98,8 @@
   --primary-rgb:   10,108,255;
   --accent:        #0A6CFF;
   --accent-rgb:    10,108,255;
+
+  --bg-elevated:   rgba(255,255,255,0.98);
 }
 
 /* ================================ RESET ================================ */
@@ -110,14 +115,27 @@ body{
   -moz-osx-font-smoothing:grayscale;
   line-height:1.65;
   overflow-x:hidden;
-  transition:background var(--dur-slow) var(--ease),color var(--dur-slow) var(--ease);
+  transition:background-color .25s var(--ease),color .25s var(--ease);
 }
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 button{font:inherit}
 
 /* Prevent background scroll when mobile menu is open */
-body.nav-open{overflow:hidden}
+body.nav-open,body.menu-open{overflow:hidden}
+
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.40);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  z-index:9998;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity var(--dur) var(--ease);
+}
+body.menu-open .menu-overlay{opacity:1;pointer-events:auto}
 
 /* Honeypot field (CSP-safe: no inline styles) */
 .hp{display:none!important}
@@ -130,7 +148,9 @@ body.nav-open{overflow:hidden}
 
 /* Theme transition class */
 .theme-switch *,.theme-switch *::before,.theme-switch *::after{
-  transition:background var(--dur-slow) var(--ease),color var(--dur-slow) var(--ease),border-color var(--dur-slow) var(--ease),box-shadow var(--dur-slow) var(--ease),opacity var(--dur-slow) var(--ease)!important;
+  transition-property:background-color,color;
+  transition-duration:.22s;
+  transition-timing-function:var(--ease);
 }
 
 /* ================================ AMBIENT BG ================================ */
@@ -164,6 +184,7 @@ body::before{
 /* ================================ HEADER ================================ */
 .header{
   position:sticky;top:0;z-index:100;
+  isolation:isolate;
   background:linear-gradient(180deg,var(--glass-3),var(--glass-2));
   border-bottom:1px solid var(--glass-border);
   backdrop-filter:blur(var(--blur-xl)) saturate(1.8);
@@ -1220,7 +1241,6 @@ input::placeholder,textarea::placeholder{color:var(--text-tertiary)}
 
   :where(
     .header,
-    .mobile-nav,
     .glass-card,
     .glass-surface,
     .hero__card,
@@ -1237,6 +1257,9 @@ input::placeholder,textarea::placeholder{color:var(--text-tertiary)}
     background:var(--mobile-flat) !important;
     box-shadow:none !important;
   }
+
+  /* Drawer must be solid (no transparency bleed) */
+  .mobile-nav{background:var(--bg-elevated) !important;opacity:1 !important}
 
   /* Remove gradient/shine overlays */
   .hero__bg{display:none !important}
@@ -1313,20 +1336,22 @@ input::placeholder,textarea::placeholder{color:var(--text-tertiary)}
     -webkit-backdrop-filter:none !important;
   }
 
+  /* Keep header above overlay/drawer so the close (burger) stays visible */
+  .header{z-index:10000}
+
   /* Mobile drawer (off-canvas) */
   .mobile-nav{
     position:fixed;
-    top:0;
-    right:0;
-    left:auto;
+    inset:0 auto 0 0;
     width:min(85vw,320px);
     height:100vh;
     max-height:none;
     border-bottom:none;
-    border-left:1px solid var(--glass-border);
-    z-index:95; /* above content, below header */
-    opacity:1;
-    transform:translate3d(100%,0,0);
+    border-right:1px solid var(--glass-border);
+    z-index:9999;
+    background:var(--bg-elevated) !important;
+    box-shadow:0 10px 40px rgba(0,0,0,0.4) !important;
+    transform:translate3d(-100%,0,0);
     transition:transform var(--dur) var(--ease);
     will-change:transform;
     pointer-events:none;

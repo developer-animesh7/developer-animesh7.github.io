@@ -39,13 +39,25 @@
   const mobileNav = document.getElementById("mobileNav");
 
   if (burger && mobileNav) {
-    const OPEN_CLASS = "nav-open";
+    const OPEN_CLASS = "menu-open";
+    const LEGACY_OPEN_CLASS = "nav-open";
     const OPEN_MS = 220;
     const CLOSE_MS = 200;
+
+    const overlay = (() => {
+      const existing = document.querySelector(".menu-overlay");
+      if (existing) return existing;
+      const el = document.createElement("div");
+      el.className = "menu-overlay";
+      el.setAttribute("aria-hidden", "true");
+      document.body.appendChild(el);
+      return el;
+    })();
 
     const open = () => {
       burger.setAttribute("aria-expanded", "true");
       document.body.classList.add(OPEN_CLASS);
+      document.body.classList.add(LEGACY_OPEN_CLASS);
 
       // Unhide first so transitions can run.
       mobileNav.hidden = false;
@@ -59,6 +71,7 @@
     const close = () => {
       burger.setAttribute("aria-expanded", "false");
       document.body.classList.remove(OPEN_CLASS);
+      document.body.classList.remove(LEGACY_OPEN_CLASS);
 
       mobileNav.classList.add("is-animating");
       mobileNav.classList.remove("is-open");
@@ -70,6 +83,9 @@
     };
 
     burger.addEventListener("click", () => burger.getAttribute("aria-expanded") === "true" ? close() : open());
+
+    // Tap/click outside the drawer closes it.
+    overlay.addEventListener("click", close);
 
     // Close on any link click (hash links + route links).
     mobileNav.addEventListener("click", (e) => { if (e.target.closest("a")) close(); });
