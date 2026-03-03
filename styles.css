@@ -1234,26 +1234,20 @@ input::placeholder,textarea::placeholder{color:var(--text-tertiary)}
 @media(max-width:1024px){
   /* ================= MOBILE PERFORMANCE MODE (<=1024px) ================= */
   /* Kill GPU-heavy compositing effects (blur/glass/gradients/shadows) */
-  :where(
-    .header,
-    .glass-card,
-    .glass-surface,
-    .hero__card,
-    .stat,
-    .contact-panel,
-    .contact-info,
-    .contact-form,
-    .footer,
-    .theme-btn,
-    .btn--glass,
-    .btn--outline,
-    .status-pill,
-    .skip
-  ){
+  *{
     backdrop-filter:none !important;
     -webkit-backdrop-filter:none !important;
   }
 
+  /* Allow frosted mobile menu + overlay only */
+  .mobile-nav{
+    backdrop-filter:blur(var(--drawer-blur)) saturate(1.6) !important;
+    -webkit-backdrop-filter:blur(var(--drawer-blur)) saturate(1.6) !important;
+  }
+  .menu-overlay{
+    backdrop-filter:blur(4px) !important;
+    -webkit-backdrop-filter:blur(4px) !important;
+  }
   /* Remove ambient/fixed layers on mobile/tablet */
   body::before{display:none !important}
   .orb{display:none !important}
