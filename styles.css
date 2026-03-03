@@ -100,6 +100,7 @@
 /* ================================ RESET ================================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;background:var(--bg)}
+html{-webkit-overflow-scrolling:touch}
 body{
   font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   color:var(--text);
@@ -1199,6 +1200,79 @@ input::placeholder,textarea::placeholder{color:var(--text-tertiary)}
 
 /* ================================ RESPONSIVE ================================ */
 @media(max-width:1024px){
+  /* ================= MOBILE PERFORMANCE MODE (<=1024px) ================= */
+  /* Kill GPU-heavy compositing effects (blur/glass/gradients/shadows) */
+  *{
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+  }
+
+  /* Remove ambient/fixed layers on mobile/tablet */
+  body::before{display:none !important}
+  .orb{display:none !important}
+
+  /* Remove any remaining blur filters */
+  :where(.orb--1,.orb--2,.orb--3,.orb--4,.reveal,.hero__bg){filter:none !important}
+
+  /* Flatten glass surfaces: no blur, no heavy borders/shadows */
+  :root{--mobile-flat:rgba(255,255,255,0.06)}
+  [data-theme="light"]{--mobile-flat:rgba(8,16,42,0.06)}
+
+  :where(
+    .header,
+    .mobile-nav,
+    .glass-card,
+    .glass-surface,
+    .hero__card,
+    .stat,
+    .contact-panel,
+    .contact-info,
+    .contact-form,
+    .footer,
+    .theme-btn,
+    .btn--glass,
+    .btn--outline,
+    .status-pill
+  ){
+    background:var(--mobile-flat) !important;
+    box-shadow:none !important;
+  }
+
+  /* Remove gradient/shine overlays */
+  .hero__bg{display:none !important}
+  .hero__card::before,
+  .theme-btn::before,
+  .cta-btn::before,
+  .btn::before{display:none !important}
+
+  /* Header: no gradient, no glow */
+  .header,.header.scrolled{background:var(--mobile-flat) !important;box-shadow:none !important}
+
+  /* Buttons: remove gradient backgrounds on mobile/tablet */
+  .cta-btn{background:var(--primary) !important;box-shadow:none !important}
+  .btn--primary{background:var(--primary) !important;box-shadow:none !important}
+
+  /* Hero: flat background + lighter text rendering */
+  .hero{background:var(--bg) !important}
+  .hero__heading{
+    background:none !important;
+    -webkit-text-fill-color:currentColor !important;
+    color:var(--text) !important;
+    text-shadow:none !important;
+    font-size:clamp(1.85rem,5.2vw,3.05rem);
+  }
+  h1,h2{text-shadow:none !important}
+
+  /* Disable reveal animations completely on mobile/tablet */
+  .reveal{opacity:1 !important;transform:none !important;filter:none !important;transition:none !important;will-change:auto !important}
+
+  /* Disable scale/hover transforms on mobile/tablet (keep taps stable) */
+  .logo:hover .logo__img,
+  .theme-btn:hover,
+  .cta-btn:hover,
+  .btn:hover,
+  .stat:hover{transform:none !important}
+
   .hero__grid{grid-template-columns:1fr;gap:32px}
   .hero__card{max-width:100%;margin-left:0}
   .hero{min-height:auto;padding:48px 0 32px}

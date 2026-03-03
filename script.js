@@ -2,7 +2,8 @@
   "use strict";
   const root = document.documentElement;
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const pointerFine = matchMedia("(pointer: fine)").matches;
+  const smallScreen = matchMedia("(max-width: 1024px)").matches;
+  const pointerFine = matchMedia("(pointer: fine)").matches && !smallScreen;
 
   /* ======== THEME ======== */
   const themeBtn = document.getElementById("themeToggle");
